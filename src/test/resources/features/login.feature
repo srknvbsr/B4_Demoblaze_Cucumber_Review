@@ -1,23 +1,46 @@
 Feature: Login Test - The user should be able to login with valid credentials
 
+  Background:  Got to the home page
+    Given The user is on the login page
+
   @plt1
   Scenario: PLT 1
-    Given The user is on the login page
+
     When The user enters valid credentials
     Then The user verifies welcome miky
 
 
  # login test with parameter
-  @plt2_parameter
-  Scenario: Login with parameter
-    Given The user is on the login page
+  @plt2
+  Scenario: PLT 3
+
     When The user logs in using "miky" and "Test1234"
-    Then The user verifies welcome miky
+    Then The user verifies welcome "miky"
+
+  @plt3
+  Scenario Outline: PLT 3
+    When The user logs in using "<username>" and "<password>"
+    Then The user verifies welcome "<username>"
+    Examples:
+      | username | password |
+      | miky     | Test1234 |
+
+  @plt4
+  Scenario Outline: PLT 4
+    When The user logs in using with credentials
+      | username | <user>     |
+      | password | <password> |
+    Then The user verifies welcome "<user>"
+    Examples:
+      | user | password |
+      | miky | Test1234 |
+
+
 
   # negative login test
-  @plt3_negative
+  @nlt_1
   Scenario Outline: Negative login test
-    Given The user is on the login page
+
     When The user logs in using "<invalidUserName>" and "<invalidPassword>"
     Then Validate that warning message is "<message>"
     Examples:

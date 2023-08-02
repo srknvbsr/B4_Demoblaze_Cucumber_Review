@@ -14,4 +14,10 @@ public abstract class BasePage {
     @FindBy(id = "nameofuser")
     public WebElement nameofuser;
 
+    @FindBy(xpath = "(//a[@class='nav-link'])[1]")
+    public WebElement homeModule;
+
+    @FindBy(xpath = "//a[.='Cart']")
+    public WebElement cartModule;
+
 }

@@ -36,12 +36,13 @@ public class LoginPage extends BasePage {
         BrowserUtils.waitFor(2);
 
     }
-    public String getWarningMessageText(String message){
+
+
+    public void verifywithPopUpMessage(String expectedMessage){
         Alert alert = Driver.get().switchTo().alert();
-        return alert.getText();
+        String actualMessage = alert.getText();
 
-
-
+        Assert.assertEquals(expectedMessage,actualMessage);
     }
 
 
